@@ -1,46 +1,50 @@
-// Sample player data
-const players = [
-  {
-    name: "Virat Kohli",
-    image: "https://via.placeholder.com/150?text=Virat+Kohli",
-    battingRank: 1,
-    bowlingRank: 50,
-    inningsBatting: 200,
-    inningsBowling: 5,
-    strikeRate: 95.6,
-    runs: 12000,
-    wickets: 5,
-  },
-  {
-    name: "Rohit Sharma",
-    image: "https://via.placeholder.com/150?text=Rohit+Sharma",
-    battingRank: 2,
-    bowlingRank: 75,
-    inningsBatting: 180,
-    inningsBowling: 3,
-    strikeRate: 88.4,
-    runs: 11000,
-    wickets: 3,
-  },
-  {
-    name: "Jasprit Bumrah",
-    image: "https://via.placeholder.com/150?text=Jasprit+Bumrah",
-    battingRank: 100,
-    bowlingRank: 1,
-    inningsBatting: 10,
-    inningsBowling: 150,
-    strikeRate: 150.0,
-    runs: 200,
-    wickets: 250,
-  },
-];
+const employeeId = "102";
+const basePrice = "5";
+const isIcon = false;
 
-let currentPlayerIndex = 0;
+// Protected Code (Not to touch while auction is ON)
+async function loadPlayersData() {
+  try {
+    const response = await fetch("data/players_data.xlsx");
+    const arrayBuffer = await response.arrayBuffer();
+    const data = new Uint8Array(arrayBuffer);
 
-// Function to display player details
+    // Read the Excel file
+    const workbook = XLSX.read(data, { type: "array" });
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+
+    // Convert to JSON
+    const rawData = XLSX.utils.sheet_to_json(worksheet);
+
+    // Process and return player data indexed by Employee ID
+    const playersData = {};
+    rawData.forEach((player) => {
+      playersData[player["Employee ID"]] = {
+        employeeId: player["Employee ID"],
+        name: player["Name"],
+        image: player["Image"],
+        role: player["Role"],
+        battingRank: player["Batting Rank"],
+        bowlingRank: player["Bowling Rank"],
+        inningsBatting: player["Innings Batting"],
+        inningsBowling: player["Innings Bowling"],
+        strikeRate: player["Strike Rate"],
+        runs: player["Runs"],
+        wickets: player["Wickets"],
+      };
+    });
+    return playersData;
+  } catch (error) {
+    console.error("Error loading players data:", error);
+    return {};
+  }
+}
+
 function displayPlayer(player) {
-  // document.getElementById("player-image").src = player.image;
+  // document.getElementById("player-id").textContent = player.employeeId;
   document.getElementById("player-name").textContent = player.name;
+  document.getElementById("player-role").textContent = player.role;
+  document.getElementById("base-price").textContent = basePrice + " Lakhs";
   document.getElementById("batting-rank").textContent = player.battingRank;
   document.getElementById("bowling-rank").textContent = player.bowlingRank;
   document.getElementById("innings-batting").textContent =
@@ -52,8 +56,26 @@ function displayPlayer(player) {
   document.getElementById("wickets").textContent = player.wickets;
 }
 
-// Initialize with the first player
-displayPlayer(players[currentPlayerIndex]);
+let players = {};
+
+async function initializePlayers() {
+  players = await loadPlayersData();
+
+  // Set a default Employee ID to fetch on page load
+
+  // Fetch and display player details for the default Employee ID
+  fetchPlayerById(employeeId);
+}
+
+document.addEventListener("DOMContentLoaded", initializePlayers);
+
+async function fetchPlayerById(employeeId) {
+  if (players[employeeId]) {
+    displayPlayer(players[employeeId]);
+  } else {
+    console.error("Player not found for Employee ID:", employeeId);
+  }
+}
 
 // Event listener for the "Next Player" button
 // document.getElementById("next-player-btn").addEventListener("click", () => {
