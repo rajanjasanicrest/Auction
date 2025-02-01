@@ -123,7 +123,7 @@ function renderTeamsData(teamsData) {
     teamsData.forEach((teamData, index) => {
       const { team, players } = teamData;
 
-      const currentPlayers = players.length;
+      const currentPlayers = players.length + 1;
       const usedBalance = players.reduce(
         (acc, player) => acc + Number(player.price) * 100000,
         0
@@ -131,16 +131,20 @@ function renderTeamsData(teamsData) {
 
       const pendingBalance = TEAM_BALANCE - usedBalance;
       const maxSpendingLimitForCurrentPlayer =
-        pendingBalance - (TOTAL_TEAM_PLAYERS - currentPlayers) * BASE_AMOUNT;
+        pendingBalance > 0
+          ? pendingBalance -
+            (TOTAL_TEAM_PLAYERS - currentPlayers - 1) * BASE_AMOUNT
+          : 0;
+      console.log(pendingBalance, maxSpendingLimitForCurrentPlayer);
 
       document.getElementById(
         `team-${index + 1}`
       ).innerHTML = `<strong>${team}</strong>
                   <div class="team-info">
                       <span>Team Size : <b>${currentPlayers}</b></span>
-                      <span>Budget: <b>₹${pendingBalance / 100000}${
-        pendingBalance > 9999999 ? " Cr" : " Lakh"
-      }</b></span>
+                      <span>Budget: <b>₹${
+                        pendingBalance > 9999999 ? 1 : pendingBalance / 100000
+                      }${pendingBalance > 9999999 ? " Cr" : " Lakh"}</b></span>
                       <span>Max Bid: <b>₹${
                         maxSpendingLimitForCurrentPlayer / 100000
                       }${
