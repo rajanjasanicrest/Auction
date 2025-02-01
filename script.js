@@ -120,28 +120,33 @@ async function loadTeamsData() {
 
 function renderTeamsData(teamsData) {
   try {
-    console.log("🌟 ~ teamsData: \n", teamsData);
-    teamsData.forEach((teamData) => {
+    teamsData.forEach((teamData, index) => {
       const { team, players } = teamData;
-      console.log("🌟🌟🌟 ~ team: \n", team);
 
       const currentPlayers = players.length;
       const usedBalance = players.reduce(
         (acc, player) => acc + Number(player.price) * 100000,
         0
       );
-      console.log(" ~ usedBalance: \n", usedBalance);
 
       const pendingBalance = TEAM_BALANCE - usedBalance;
       const maxSpendingLimitForCurrentPlayer =
         pendingBalance - (TOTAL_TEAM_PLAYERS - currentPlayers) * BASE_AMOUNT;
 
-      console.log(" ~ currentPlayers: \n", currentPlayers);
-      console.log(" ~ pendingBalance: \n", pendingBalance);
-      console.log(
-        " ~ maxSpendingLimitForCurrentPlayer: \n",
-        maxSpendingLimitForCurrentPlayer
-      );
+      document.getElementById(
+        `team-${index + 1}`
+      ).innerHTML = `<strong>${team}</strong>
+                  <div class="team-info">
+                      <span>Team Size : <b>${currentPlayers}</b></span>
+                      <span>Budget: <b>₹${pendingBalance / 100000}${
+        pendingBalance > 9999999 ? " Cr" : " Lakh"
+      }</b></span>
+                      <span>Max Bid: <b>₹${
+                        maxSpendingLimitForCurrentPlayer / 100000
+                      }${
+        maxSpendingLimitForCurrentPlayer > 9999999 ? " Cr" : " Lakh"
+      }</b></span>
+                  </div>`;
     });
   } catch (error) {
     console.error("Error loading teams data:", error);

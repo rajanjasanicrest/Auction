@@ -1,75 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CREST Box Tournament 5.0</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="header">
-    <h1>🏆 CREST Box Tournament 5.0 🏆 </h1>
-  </header>
-  <div class="main-container">
-    <!-- Left Side: Captains List -->
-    <div class="teams-list">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CREST Box Tournament 5.0</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>🏆 CREST Box Tournament 5.0 🏆</h1>
+    </header>
+    <div class="main-container">
+      <!-- Left Side: Captains List -->
+      <div class="teams-list">
         <h3>👑 Teams & Budgets</h3>
-        <ul>
+        <ul id="teams-container">
           <!-- Team 1 to Team 6 -->
-          <li  class="team-li">
-            <div class = "team-details">
-                <strong>Team 1</strong>
-                <div class="team-info">
-                    <span>Team Size : 4 </span>
-                    <span>Budget: ₹80Cr</span>
-                    <span>Max Bid: ₹9Cr</span>
-                </div>
-            </div>
-            <div class = "team-details">
-                <strong>Team 2</strong>
-                <div class="team-info">
-                    <span>Team Size : 4 </span>
-                    <span>Budget: ₹80Cr</span>
-                    <span>Max Bid: ₹9Cr</span>
-                </div>
-            </div>
-          </li>
-
           <li class="team-li">
-            <div class = "team-details">
-              <strong>Team 3</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-              </div>
-            </div>
-            <div class = "team-details"> 
-              <strong>Team 4</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-                </div>
-            </div>
+            <div class="team-details"><span id="team-1" /></div>
+            <div class="team-details"><span id="team-2" /></div>
           </li>
           <li class="team-li">
-            <div class = "team-details">
-              <strong>Team 5</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-              </div>
-            </div>
-            <div class = "team-details">
-              <strong>Team 6</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-              </div>
-            </div>
+            <div class="team-details"><span id="team-3" /></div>
+            <div class="team-details"><span id="team-4" /></div>
+          </li>
+          <li class="team-li">
+            <div class="team-details"><span id="team-5" /></div>
+            <div class="team-details"><span id="team-6" /></div>
           </li>
         </ul>
       </div>
@@ -85,114 +42,71 @@
               alt="Player Image"
             />
             <h2 id="player-name">VK</h2>
-            <br>
+            <br />
             <div class="stat-item">
               <p><strong>Base Price</strong></p>
               <p class="some-stat" id="base-price">5 Lakhs</p>
             </div>
           </div>
 
-        <!-- Right Side: Player Stats -->
-        <div class="stats-section">
-          <h3>📊 Player Statistics</h3>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <p><strong>🏏 Batting Rank</strong></p>
-              <p class="some-stat" id="batting-rank">10</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>⚾ Bowling Rank</strong></p>
-              <p class="some-stat" id="bowling-rank">N/A</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>🏏 Innings </strong></p>
-              <p class="some-stat" id="innings-batting">N/A</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>⚾ Innings</strong></p>
-              <p class="some-stat" id="innings-bowling">N/A</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>🏏 Strike Rate</strong></p>
-              <p class="some-stat" id="strike-rate">N/A</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>⚾ Wickets</strong></p>
-              <p class="some-stat" id="wickets">N/A</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>🏏 Runs</strong></p>
-              <p class="some-stat" id="runs">N/A</p>
-            </div>
-            <div class="stat-item">
-              <p><strong>⚾ Economy</strong></p>
-              <p class="some-stat" id="economy">10</p>
+          <!-- Right Side: Player Stats -->
+          <div class="stats-section">
+            <h3>📊 Player Statistics</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <p><strong>🏏 Batting Rank</strong></p>
+                <p class="some-stat" id="batting-rank">10</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>⚾ Bowling Rank</strong></p>
+                <p class="some-stat" id="bowling-rank">N/A</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>🏏 Innings </strong></p>
+                <p class="some-stat" id="innings-batting">N/A</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>⚾ Innings</strong></p>
+                <p class="some-stat" id="innings-bowling">N/A</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>🏏 Strike Rate</strong></p>
+                <p class="some-stat" id="strike-rate">N/A</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>⚾ Wickets</strong></p>
+                <p class="some-stat" id="wickets">N/A</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>🏏 Runs</strong></p>
+                <p class="some-stat" id="runs">N/A</p>
+              </div>
+              <div class="stat-item">
+                <p><strong>⚾ Economy</strong></p>
+                <p class="some-stat" id="economy">10</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
         <!-- Search Field for Employee ID -->
       </div>
 
-    <div class="teams-list">
+      <div class="teams-list">
         <h3>👑 Teams & Budgets</h3>
         <ul>
-          <!-- Team 1 to Team 6 -->
-          <li  class="team-li">
-            <div class = "team-details">
-                <strong>Team 7</strong>
-                <div class="team-info">
-                    <span>Team Size : 4 </span>
-                    <span>Budget: ₹80Cr</span>
-                    <span>Max Bid: ₹9Cr</span>
-                </div>
-            </div>
-            <div class = "team-details">
-                <strong>Team 8</strong>
-                <div class="team-info">
-                    <span>Team Size : 4 </span>
-                    <span>Budget: ₹80Cr</span>
-                    <span>Max Bid: ₹9Cr</span>
-                </div>
-            </div>
-          </li>
-
+          <!-- Team 7 to Team 12 -->
           <li class="team-li">
-            <div class = "team-details">
-              <strong>Team 9</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-              </div>
-            </div>
-            <div class = "team-details"> 
-              <strong>Team 10</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-                </div>
-            </div>
+            <div class="team-details"><span id="team-7" /></div>
+            <div class="team-details"><span id="team-8" /></div>
           </li>
           <li class="team-li">
-            <div class = "team-details">
-              <strong>Team 11</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-              </div>
-            </div>
-            <div class = "team-details">
-              <strong>Team 12</strong>
-              <div class="team-info">
-                  <span>Team Size : 4 </span>
-                  <span>Budget: ₹80Cr</span>
-                  <span>Max Bid: ₹9Cr</span>
-              </div>
-            </div>
+            <div class="team-details"><span id="team-9" /></div>
+            <div class="team-details"><span id="team-10" /></div>
+          </li>
+          <li class="team-li">
+            <div class="team-details"><span id="team-11" /></div>
+            <div class="team-details"><span id="team-12" /></div>
           </li>
         </ul>
       </div>
