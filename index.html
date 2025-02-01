@@ -1,29 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CREST Box Tournament 5.0</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="header">
-      <h1>🏆 CREST Box Tournament 5.0</h1>
-    </header>
-    <div class="main-container">
-      <!-- Left Side: Captains List -->
-      <div class="captains-list">
-        <h5>👑 Teams & Pending Budgets</h5>
-        <br />
-
-        <ul>
-          <li>Team 1 - ₹100 Cr</li>
-          <li>Team 2 - ₹95 Cr</li>
-          <li>Team 3 - ₹90 Cr</li>
-          <li>Team 4 - ₹85 Cr</li>
-          <li>Team 5 - ₹80 Cr</li>
-        </ul>
-      </div>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +17,7 @@
         <ul>
           <!-- Team 1 to Team 6 -->
           <li  class="team-li">
-            <div>
+            <div class = "team-details">
                 <strong>Team 1</strong>
                 <div class="team-info">
                     <span>Team Size : 4 </span>
@@ -49,7 +25,7 @@
                     <span>Max Bid: ₹9Cr</span>
                 </div>
             </div>
-            <div>
+            <div class = "team-details">
                 <strong>Team 2</strong>
                 <div class="team-info">
                     <span>Team Size : 4 </span>
@@ -59,37 +35,40 @@
             </div>
           </li>
 
-          <li>
-            <div>
-                <strong>Team 3</strong>
-                <div class="team-info">
-                    <span>Team Size : 4 </span>
-                    <span>Budget: ₹80Cr</span>
-                    <span>Max Bid: ₹9Cr</span>
-                </div>
-              
-                <strong>Team 4</strong>
-                <div class="team-info">
-                    <span>Team Size : 4 </span>
-                    <span>Budget: ₹80Cr</span>
-                    <span>Max Bid: ₹9Cr</span>
+          <li class="team-li">
+            <div class = "team-details">
+              <strong>Team 3</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+              </div>
+            </div>
+            <div class = "team-details"> 
+              <strong>Team 4</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
                 </div>
             </div>
           </li>
-          <li>
-            <strong>Team 5</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
+          <li class="team-li">
+            <div class = "team-details">
+              <strong>Team 5</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+              </div>
             </div>
-          </li>
-          <li>
-            <strong>Team 6</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
+            <div class = "team-details">
+              <strong>Team 6</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+              </div>
             </div>
           </li>
         </ul>
@@ -106,6 +85,11 @@
               alt="Player Image"
             />
             <h2 id="player-name">VK</h2>
+            <br>
+            <div class="stat-item">
+              <p><strong>Base Price</strong></p>
+              <p class="some-stat" id="base-price">5 Lakhs</p>
+            </div>
           </div>
 
         <!-- Right Side: Player Stats -->
@@ -154,53 +138,60 @@
     <div class="teams-list">
         <h3>👑 Teams & Budgets</h3>
         <ul>
-          <!-- Team 7 to Team 12 -->
-          <li>
-            <strong>Team 7</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
+          <!-- Team 1 to Team 6 -->
+          <li  class="team-li">
+            <div class = "team-details">
+                <strong>Team 7</strong>
+                <div class="team-info">
+                    <span>Team Size : 4 </span>
+                    <span>Budget: ₹80Cr</span>
+                    <span>Max Bid: ₹9Cr</span>
+                </div>
+            </div>
+            <div class = "team-details">
+                <strong>Team 8</strong>
+                <div class="team-info">
+                    <span>Team Size : 4 </span>
+                    <span>Budget: ₹80Cr</span>
+                    <span>Max Bid: ₹9Cr</span>
+                </div>
             </div>
           </li>
-          <li>
-            <strong>Team 8</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
+
+          <li class="team-li">
+            <div class = "team-details">
+              <strong>Team 9</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+              </div>
+            </div>
+            <div class = "team-details"> 
+              <strong>Team 10</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+                </div>
             </div>
           </li>
-          <li>
-            <strong>Team 9</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
+          <li class="team-li">
+            <div class = "team-details">
+              <strong>Team 11</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+              </div>
             </div>
-          </li>
-          <li>
-            <strong>Team 10</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
-            </div>
-          </li>
-          <li>
-            <strong>Team 11</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
-            </div>
-          </li>
-          <li>
-            <strong>Team 12</strong>
-            <div class="team-info">
-                <span>Team Size : 4 </span>
-                <span>Budget: ₹80Cr</span>
-                <span>Max Bid: ₹9Cr</span>
+            <div class = "team-details">
+              <strong>Team 12</strong>
+              <div class="team-info">
+                  <span>Team Size : 4 </span>
+                  <span>Budget: ₹80Cr</span>
+                  <span>Max Bid: ₹9Cr</span>
+              </div>
             </div>
           </li>
         </ul>

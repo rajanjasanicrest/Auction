@@ -40,7 +40,7 @@ let currentPlayerIndex = 0;
 // Function to display player details
 function displayPlayer(player) {
   // document.getElementById("player-image").src = player.image;
-  document.getElementById("player-name").textContent = "player.name";
+  document.getElementById("player-name").textContent = player.name;
   document.getElementById("batting-rank").textContent = player.battingRank;
   document.getElementById("bowling-rank").textContent = player.bowlingRank;
   document.getElementById("innings-batting").textContent =
