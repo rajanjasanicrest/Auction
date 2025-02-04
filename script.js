@@ -85,9 +85,13 @@ async function fetchPlayerById(employeeId) {
 
 // TEAMS DATA
 const COLUMNS_PER_TEAM = 3;
-const TEAM_BALANCE = 10000000;
+const TEAM_BALANCE = 20000000;
 const BASE_AMOUNT = 500000;
+let ICON_BASE_AMOUNT = 3000000;
+const ICON_BID_AMOUNT = 200000;
 const TOTAL_TEAM_PLAYERS = 9;
+const TOTAL_ICON_PLAYERS = 12;
+let remainingIconPlayers = 12;
 
 async function loadTeamsData() {
   try {
@@ -114,11 +118,23 @@ async function loadTeamsData() {
       const teamName = rawData[0][startCol] || "Unknown Team";
 
       const players = [];
+      let hasIconPlayer = false;
 
       // Start from row 2 (skip header and column titles)
       for (let row = 2; row < rawData.length; row++) {
         // Check if we have both name and price in this row
         if (rawData[row][startCol + 1] && rawData[row][startCol + 2]) {
+          if (
+            rawData[row][startCol + 1].includes("(I)") ||
+            rawData[row][startCol + 1].includes("(i)")
+          ) {
+            remainingIconPlayers--;
+            ICON_BASE_AMOUNT += ICON_BID_AMOUNT;
+            hasIconPlayer = true;
+          }
+
+          console.log("🌟 ~ remainingIconPlayers: \n", remainingIconPlayers);
+
           players.push({
             index: rawData[row][startCol] || players.length + 1,
             name: rawData[row][startCol + 1],
@@ -128,8 +144,9 @@ async function loadTeamsData() {
       }
 
       teams.push({
-        team: teamName,
+        team: rawData?.[2]?.[startCol + 1] || teamName,
         players: players,
+        hasIconPlayer,
       });
     }
 
@@ -143,20 +160,29 @@ async function loadTeamsData() {
 function renderTeamsData(teamsData) {
   try {
     teamsData.forEach((teamData, index) => {
-      const { team, players } = teamData;
+      const { team, players, hasIconPlayer = false } = teamData;
 
-      const currentPlayers = players.length + 1;
+      const currentPlayers = players.length + 1; // +1 for the captain
       const usedBalance = players.reduce(
-        (acc, player) => acc + Number(player.price) * 100000,
+        (acc, player) => acc + Number(player.price) * 10000000,
         0
       );
 
       const pendingBalance = TEAM_BALANCE - usedBalance;
+      const minBalanceNeeded =
+        hasIconPlayer || isIcon
+          ? (TOTAL_TEAM_PLAYERS - currentPlayers - 1) * BASE_AMOUNT
+          : (TOTAL_TEAM_PLAYERS - currentPlayers - 2) * BASE_AMOUNT +
+            (ICON_BASE_AMOUNT + (remainingIconPlayers - 1) * ICON_BID_AMOUNT);
+
+      console.log("team", team, ": minBalanceNeeded: ", minBalanceNeeded);
+      console.log(TOTAL_TEAM_PLAYERS - currentPlayers - 2, BASE_AMOUNT);
+      console.log(
+        (remainingIconPlayers - 1) * ICON_BID_AMOUNT,
+        ICON_BASE_AMOUNT
+      );
       const maxSpendingLimitForCurrentPlayer =
-        pendingBalance > 0
-          ? pendingBalance -
-            (TOTAL_TEAM_PLAYERS - currentPlayers - 1) * BASE_AMOUNT
-          : 0;
+        pendingBalance > 0 ? pendingBalance - minBalanceNeeded : 0;
       console.log(pendingBalance, maxSpendingLimitForCurrentPlayer);
 
       document.getElementById(
@@ -165,13 +191,22 @@ function renderTeamsData(teamsData) {
                   <div class="team-info">
                       <span>Team Size : <b>${currentPlayers}</b></span>
                       <span>Budget: <b>₹${
-                        pendingBalance > 9999999 ? 1 : pendingBalance / 100000
-                      }${pendingBalance > 9999999 ? " Cr" : " Lakh"}</b></span>
-                      <span>Max Bid: <b>₹${
-                        maxSpendingLimitForCurrentPlayer / 100000
-                      }${
-        maxSpendingLimitForCurrentPlayer > 9999999 ? " Cr" : " Lakh"
-      }</b></span>
+                        pendingBalance >= 10000000
+                          ? `${(pendingBalance / 10000000).toFixed(2)}Cr`
+                          : `${Math.floor(pendingBalance / 100000)}Lakh`
+                      }</b></span>
+                      <span>Max Bid: <b>₹
+                      ${
+                        isIcon && hasIconPlayer
+                          ? "-"
+                          : maxSpendingLimitForCurrentPlayer >= 10000000
+                          ? `${(
+                              maxSpendingLimitForCurrentPlayer / 10000000
+                            ).toFixed(2)}Cr`
+                          : `${Math.floor(
+                              maxSpendingLimitForCurrentPlayer / 100000
+                            )}Lakh`
+                      }</b></span>
                   </div>`;
     });
   } catch (error) {
