@@ -196,24 +196,49 @@ function renderTeamsData(teamsData) {
         `team-${index + 1}`
       ).innerHTML = `<strong>${team}</strong>
                   <div class="team-info">
-                      <span>Team Size : <b>${currentPlayers}</b></span>
-                      <span>Budget: <b>₹${
-                        pendingBalance >= 10000000
-                          ? `${(pendingBalance / 10000000).toFixed(2)} Cr`
-                          : `${Math.floor(pendingBalance / 100000)} Lakhs`
-                      }</b></span>
-                      <span>Max Bid: <b>₹
-                      ${
-                        isIcon && hasIconPlayer
-                          ? "-"
-                          : maxSpendingLimitForCurrentPlayer >= 10000000
-                          ? `${(
-                              maxSpendingLimitForCurrentPlayer / 10000000
-                            ).toFixed(2)} Cr`
-                          : `${Math.floor(
-                              maxSpendingLimitForCurrentPlayer / 100000
-                            )} Lakhs`
-                      }</b></span>
+                      
+                    <div>
+                      <div>
+                        Size :
+                      </div>
+                      <div class='team-stats-font'>
+                        <b>${currentPlayers}</b>
+                      </div>
+
+                    </div>
+                    
+                    <div>
+                      <div>
+                        Budget: 
+                      </div>
+                      <div class='team-stats-font'>
+                        <b>${
+                            pendingBalance >= 10000000
+                              ? `${(pendingBalance / 10000000).toFixed(2)} Cr`
+                              : `${Math.floor(pendingBalance / 100000)} L`
+                          }</b>
+                      </div>                      
+                    </div>
+                      
+                    <div>
+                      <div>
+                        Max Bid: 
+                      </div>
+                      <div class='team-stats-font'>
+                          <b>
+                        ${
+                          isIcon && hasIconPlayer
+                            ? "-"
+                            : maxSpendingLimitForCurrentPlayer >= 10000000
+                            ? `${(
+                                maxSpendingLimitForCurrentPlayer / 10000000
+                              ).toFixed(2)} Cr`
+                            : `${Math.floor(
+                                maxSpendingLimitForCurrentPlayer / 100000
+                              )} Lakhs`
+                        }</b>
+                      </div>                
+                    </div>
                   </div>`;
     });
   } catch (error) {
