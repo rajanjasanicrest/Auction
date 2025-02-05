@@ -1,6 +1,16 @@
 const employeeId = "102";
 const basePrice = "5";
-const isIcon = false;
+const isIcon = true;
+
+// TEAMS DATA
+const COLUMNS_PER_TEAM = 3;
+const TEAM_BALANCE = 20000000;
+const BASE_AMOUNT = 500000;
+let ICON_BASE_AMOUNT = 3000000;
+const ICON_BID_AMOUNT = 200000;
+const TOTAL_TEAM_PLAYERS = 9;
+const TOTAL_ICON_PLAYERS = 12;
+let remainingIconPlayers = 12;
 
 // Protected Code (Not to touch while auction is ON)
 async function loadPlayersData() {
@@ -44,7 +54,9 @@ function displayPlayer(player) {
   // document.getElementById("player-id").textContent = player.employeeId;
   document.getElementById("player-name").textContent = player.name;
   document.getElementById("player-role").textContent = player.role;
-  document.getElementById("base-price").textContent = basePrice + " Lakhs";
+  document.getElementById("base-price").textContent = isIcon
+    ? ICON_BASE_AMOUNT
+    : `${basePrice + " Lakhs"}`;
   document.getElementById("batting-rank").textContent = player.battingRank;
   document.getElementById("bowling-rank").textContent = player.bowlingRank;
   document.getElementById("innings-batting").textContent =
@@ -82,16 +94,6 @@ async function fetchPlayerById(employeeId) {
 //   currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // Loop back to the first player
 //   displayPlayer(players[currentPlayerIndex]);
 // });
-
-// TEAMS DATA
-const COLUMNS_PER_TEAM = 3;
-const TEAM_BALANCE = 20000000;
-const BASE_AMOUNT = 500000;
-let ICON_BASE_AMOUNT = 3000000;
-const ICON_BID_AMOUNT = 200000;
-const TOTAL_TEAM_PLAYERS = 9;
-const TOTAL_ICON_PLAYERS = 12;
-let remainingIconPlayers = 12;
 
 async function loadTeamsData() {
   try {
@@ -142,13 +144,18 @@ async function loadTeamsData() {
           });
         }
       }
-
       teams.push({
         team: rawData?.[2]?.[startCol + 1] || teamName,
         players: players,
         hasIconPlayer,
       });
     }
+
+    document.getElementById("base-price").textContent = isIcon
+      ? ICON_BASE_AMOUNT >= 10000000
+        ? `${(ICON_BASE_AMOUNT / 10000000).toFixed(2)} Cr`
+        : `${Math.floor(ICON_BASE_AMOUNT / 100000)} Lakhs`
+      : `${basePrice + " Lakhs"}`;
 
     return teams;
   } catch (error) {
@@ -192,8 +199,8 @@ function renderTeamsData(teamsData) {
                       <span>Team Size : <b>${currentPlayers}</b></span>
                       <span>Budget: <b>₹${
                         pendingBalance >= 10000000
-                          ? `${(pendingBalance / 10000000).toFixed(2)}Cr`
-                          : `${Math.floor(pendingBalance / 100000)}Lakh`
+                          ? `${(pendingBalance / 10000000).toFixed(2)} Cr`
+                          : `${Math.floor(pendingBalance / 100000)} Lakhs`
                       }</b></span>
                       <span>Max Bid: <b>₹
                       ${
@@ -202,10 +209,10 @@ function renderTeamsData(teamsData) {
                           : maxSpendingLimitForCurrentPlayer >= 10000000
                           ? `${(
                               maxSpendingLimitForCurrentPlayer / 10000000
-                            ).toFixed(2)}Cr`
+                            ).toFixed(2)} Cr`
                           : `${Math.floor(
                               maxSpendingLimitForCurrentPlayer / 100000
-                            )}Lakh`
+                            )} Lakhs`
                       }</b></span>
                   </div>`;
     });
