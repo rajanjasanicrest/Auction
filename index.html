@@ -7,109 +7,142 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="header">
-      <h1>🏆 CREST Box Tournament 5.0 🏆</h1>
-    </header>
-    <div class="main-container">
-      <!-- Left Side: Captains List -->
-      <div class="teams-list">
-        <h3>👑 Teams & Budgets</h3>
-        <ul id="teams-container">
-          <!-- Team 1 to Team 6 -->
-          <li class="team-li">
-            <div class="team-details"><span id="team-1" /></div>
-            <div class="team-details"><span id="team-2" /></div>
-          </li>
-          <li class="team-li">
-            <div class="team-details"><span id="team-3" /></div>
-            <div class="team-details"><span id="team-4" /></div>
-          </li>
-          <li class="team-li">
-            <div class="team-details"><span id="team-5" /></div>
-            <div class="team-details"><span id="team-6" /></div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Right Side: Auction Container -->
-      <div class="auction-container">
-        <div class="player-card">
-          <!-- Left Side: Player Image and Name -->
-          <div class="player-info">
-            <img
-              id="player-image"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6CQDvcER2-SfOBDz5Uc-6LEJ03voQVSKj8A&s"
-              alt="Player Image"
-            />
-            <h2 id="player-name">-</h2>
-            <h4 id="player-role">None</h4>
-            <br />
-            <div class="stat-item">
-              <p><strong>Base Price</strong></p>
-              <p class="some-stat" id="base-price">5 Lakhs</p>
-            </div>
-          </div>
-
-          <!-- Right Side: Player Stats -->
-          <div class="stats-section">
-            <h3>📊 Player Statistics</h3>
-            <div class="stats-grid">
-              <div class="stat-item">
-                <p><strong>🏏 Rank</strong></p>
-                <p class="some-stat" id="batting-rank">10</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>⚾ Rank</strong></p>
-                <p class="some-stat" id="bowling-rank">N/A</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>🏏 Innings </strong></p>
-                <p class="some-stat" id="innings-batting">N/A</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>⚾ Innings</strong></p>
-                <p class="some-stat" id="innings-bowling">N/A</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>🏏 Strike Rate</strong></p>
-                <p class="some-stat" id="strike-rate">N/A</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>⚾ Wickets</strong></p>
-                <p class="some-stat" id="wickets">N/A</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>🏏 Runs</strong></p>
-                <p class="some-stat" id="runs">N/A</p>
-              </div>
-              <div class="stat-item">
-                <p><strong>⚾ Economy</strong></p>
-                <p class="some-stat" id="economy">10</p>
-              </div>
-            </div>
-          </div>
+    <div class="loading-screen">
+      <h1 class="animated-title">
+        <span style="--i:1">🏆</span>
+        <span style="--i:2">C</span>
+        <span style="--i:3">R</span>
+        <span style="--i:4">E</span>
+        <span style="--i:5">S</span>
+        <span style="--i:6">T</span>
+        <span style="--i:7"> </span>
+        <span style="--i:8">B</span>
+        <span style="--i:9">o</span>
+        <span style="--i:10">x</span>
+        <span style="--i:11"> </span>
+        <span style="--i:12">T</span>
+        <span style="--i:13">o</span>
+        <span style="--i:14">u</span>
+        <span style="--i:15">r</span>
+        <span style="--i:16">n</span>
+        <span style="--i:17">a</span>
+        <span style="--i:18">m</span>
+        <span style="--i:19">e</span>
+        <span style="--i:20">n</span>
+        <span style="--i:21">t</span>
+        <span style="--i:22"> </span>
+        <span style="--i:23">5</span>
+        <span style="--i:24">.</span>
+        <span style="--i:25">0</span>
+        <span style="--i:26"> </span>
+        <span style="--i:27">🏆</span>
+      </h1>
+    </div>
+    <div class="main-content">
+      <header class="header">
+        <h1>🏆 CREST Box Tournament 5.0 🏆</h1>
+      </header>
+      <div class="main-container">
+        <!-- Left Side: Captains List -->
+        <div class="teams-list">
+          <h3>👑 Teams & Budgets</h3>
+          <ul id="teams-container">
+            <!-- Team 1 to Team 6 -->
+            <li class="team-li">
+              <div class="team-details"><span id="team-1" /></div>
+              <div class="team-details"><span id="team-2" /></div>
+            </li>
+            <li class="team-li">
+              <div class="team-details"><span id="team-3" /></div>
+              <div class="team-details"><span id="team-4" /></div>
+            </li>
+            <li class="team-li">
+              <div class="team-details"><span id="team-5" /></div>
+              <div class="team-details"><span id="team-6" /></div>
+            </li>
+          </ul>
         </div>
 
-        <!-- Search Field for Employee ID -->
-      </div>
+        <!-- Right Side: Auction Container -->
+        <div class="auction-container">
+          <div class="player-card">
+            <!-- Left Side: Player Image and Name -->
+            <div class="player-info">
+              <img
+                id="player-image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6CQDvcER2-SfOBDz5Uc-6LEJ03voQVSKj8A&s"
+                alt="Player Image"
+              />
+              <h2 id="player-name">-</h2>
+              <h4 id="player-role">None</h4>
+              <br />
+              <div class="stat-item">
+                <p><strong>Base Price</strong></p>
+                <p class="some-stat" id="base-price">5 Lakhs</p>
+              </div>
+            </div>
 
-      <div class="teams-list">
-        <h3>👑 Teams & Budgets</h3>
-        <ul>
-          <!-- Team 7 to Team 12 -->
-          <li class="team-li">
-            <div class="team-details"><span id="team-7" /></div>
-            <div class="team-details"><span id="team-8" /></div>
-          </li>
-          <li class="team-li">
-            <div class="team-details"><span id="team-9" /></div>
-            <div class="team-details"><span id="team-10" /></div>
-          </li>
-          <li class="team-li">
-            <div class="team-details"><span id="team-11" /></div>
-            <div class="team-details"><span id="team-12" /></div>
-          </li>
-        </ul>
+            <!-- Right Side: Player Stats -->
+            <div class="stats-section">
+              <h3>📊 Player Statistics</h3>
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <p><strong>🏏 Rank</strong></p>
+                  <p class="some-stat" id="batting-rank">10</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>⚾ Rank</strong></p>
+                  <p class="some-stat" id="bowling-rank">N/A</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>🏏 Innings </strong></p>
+                  <p class="some-stat" id="innings-batting">N/A</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>⚾ Innings</strong></p>
+                  <p class="some-stat" id="innings-bowling">N/A</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>🏏 Strike Rate</strong></p>
+                  <p class="some-stat" id="strike-rate">N/A</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>⚾ Wickets</strong></p>
+                  <p class="some-stat" id="wickets">N/A</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>🏏 Runs</strong></p>
+                  <p class="some-stat" id="runs">N/A</p>
+                </div>
+                <div class="stat-item">
+                  <p><strong>⚾ Economy</strong></p>
+                  <p class="some-stat" id="economy">10</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Field for Employee ID -->
+        </div>
+
+        <div class="teams-list">
+          <h3>👑 Teams & Budgets</h3>
+          <ul>
+            <!-- Team 7 to Team 12 -->
+            <li class="team-li">
+              <div class="team-details"><span id="team-7" /></div>
+              <div class="team-details"><span id="team-8" /></div>
+            </li>
+            <li class="team-li">
+              <div class="team-details"><span id="team-9" /></div>
+              <div class="team-details"><span id="team-10" /></div>
+            </li>
+            <li class="team-li">
+              <div class="team-details"><span id="team-11" /></div>
+              <div class="team-details"><span id="team-12" /></div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>

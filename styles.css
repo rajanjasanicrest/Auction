@@ -5,9 +5,9 @@
 }
 
 body {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   background: linear-gradient(
-    -45deg, 
+    -45deg,
     #0a0a0a,
     #1a1a2e,
     #16213e,
@@ -66,8 +66,12 @@ body {
   font-size: 20px;
   font-weight: 700;
   text-align: center;
-  color: #d4edda ;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  color: #d4edda;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
   padding: 12px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -81,7 +85,11 @@ body {
 /* Hover effect */
 .teams-list h3:hover {
   transform: scale(1.05);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -91,11 +99,12 @@ body {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
-              inset 0 0 15px rgba(255, 255, 255, 0.05);
+    inset 0 0 15px rgba(255, 255, 255, 0.05), 0 0 20px rgba(13, 114, 215, 0.3);
   width: 30vw;
   transform: perspective(1000px) rotateY(5deg);
   transition: all 0.5s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 .teams-list:last-child {
@@ -105,7 +114,7 @@ body {
 .teams-list:hover {
   transform: perspective(1000px) rotateY(0deg) translateZ(50px);
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6),
-              inset 0 0 20px rgba(255, 255, 255, 0.1);
+    inset 0 0 20px rgba(255, 255, 255, 0.1), 0 0 30px rgba(0, 115, 230, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -154,7 +163,7 @@ body {
 .team-details strong {
   font-size: 16px;
   font-weight: 700;
-  color: #d4edda ;
+  color: #d4edda;
   display: block;
   text-align: center;
   margin-bottom: 6px;
@@ -169,7 +178,7 @@ body {
   padding: 10px;
   border-radius: 8px;
 }
-.team-info div{
+.team-info div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -187,7 +196,7 @@ body {
 }
 
 .team-info strong {
-  color: #d4edda ;
+  color: #d4edda;
 }
 
 .auction-container {
@@ -196,18 +205,19 @@ body {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 255, 0.15),
-              inset 0 0 20px rgba(255, 255, 255, 0.05);
+    inset 0 0 20px rgba(255, 255, 255, 0.05), 0 0 20px rgba(0, 115, 230, 0.3);
   width: 32vw;
   text-align: center;
   transform: perspective(1000px) translateZ(30px);
   transition: all 0.5s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 .auction-container:hover {
   transform: perspective(1000px) translateZ(50px);
-  box-shadow: 0 30px 50px rgba(0, 0, 255, 0.2),
-              inset 0 0 25px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.1), 0 0 30px rgba(0, 115, 230, 0.5);
 }
 
 .player-card {
@@ -229,7 +239,7 @@ body {
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
-              inset 0 0 15px rgba(255, 255, 255, 0.1);
+    inset 0 0 15px rgba(255, 255, 255, 0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   transform: translateZ(30px);
 }
@@ -242,7 +252,7 @@ body {
   font-size: 28px;
   font-weight: 700;
   margin-top: 15px;
-  color: #d4edda ;
+  color: #d4edda;
   animation: fadeIn 1.5s ease-out;
 }
 
@@ -274,7 +284,7 @@ body {
   gap: 15px;
 }
 
-.stats-section p{
+.stats-section p {
   text-align: center;
 }
 
@@ -284,7 +294,7 @@ body {
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3),
-              inset 0 0 10px rgba(255, 255, 255, 0.05);
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
@@ -299,7 +309,7 @@ body {
 .stat-item p {
   margin: 0;
   font-size: 16px;
-  color: #d4edda ;
+  color: #d4edda;
 }
 
 .stat-item p:first-child {
@@ -321,7 +331,7 @@ body {
   border-radius: 50px;
   width: 200px;
   background: rgba(255, 255, 255, 0.2);
-  color: #d4edda ;
+  color: #d4edda;
   outline: none;
   transition: background 0.3s ease;
 }
@@ -342,7 +352,8 @@ body {
   font-size: 16px;
   border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -360,10 +371,16 @@ body {
 /* Add these new animations */
 @keyframes glow {
   from {
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6;
+    box-shadow: 0 0 5px #fff, 
+               0 0 10px #fff, 
+               0 0 15px #002b5c,  /* Dark midnight blue */
+               0 0 20px #002b5c;
   }
   to {
-    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6;
+    box-shadow: 0 0 10px #fff, 
+               0 0 20px #fff, 
+               0 0 30px #002b5c,  /* Maintains deep navy */
+               0 0 40px #002b5c;
   }
 }
 
@@ -419,4 +436,120 @@ body {
 
 .stat-item {
   animation: none;
+}
+
+/* Add enhanced title animation styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    -45deg,
+    #0a0a0a,
+    #1a1a2e,
+    #16213e,
+    #1f1f3a,
+    #0d1b2a
+  );
+  background-size: 400% 400%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: gradientBG 15s ease infinite, fadeOut 1s ease 4s forwards;
+}
+
+.animated-title {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #d4edda;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 30px;
+  border-radius: 50px;
+  box-shadow: 0 0 30px rgba(0, 0, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: titlePath 4s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    glowPulse 2s ease-in-out infinite;
+  width: 90vw;
+  max-width: 1200px;
+}
+
+.animated-title span {
+  display: inline-block;
+  opacity: 0;
+  animation: letterAppear 0.5s ease forwards;
+  animation-delay: calc(0.05s * var(--i));
+}
+
+.main-content {
+  opacity: 0;
+  animation: contentAppear 1.5s ease-in-out 3.8s forwards;
+}
+
+@keyframes titlePath {
+  0% {
+    transform: translate(-100vw, 100vh) scale(0.5) rotate(-10deg);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(0, 0) scale(1.5) rotate(0deg);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(0, 0) scale(1.5) rotate(0deg);
+  }
+  60% {
+    transform: translate(0, 0) scale(1.5) rotate(360deg);
+  }
+  80% {
+    transform: translate(0, -50px) scale(1.5) rotate(360deg);
+  }
+  100% {
+    transform: translate(0, -150px) scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes letterAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) rotate(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(0, 0, 255, 0.3), 0 0 60px rgba(0, 0, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(0, 0, 255, 0.5), 0 0 100px rgba(0, 0, 255, 0.2);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes contentAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
