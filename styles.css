@@ -63,7 +63,7 @@ body {
 }
 
 .teams-list h3 {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
   text-align: center;
   color: #d4edda;
@@ -105,6 +105,7 @@ body {
   transition: all 0.5s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: glow 2s ease-in-out infinite alternate;
+  margin: 0 30px;
 }
 
 .teams-list:last-child {
@@ -145,7 +146,7 @@ body {
 .team-details {
   flex: 1;
   background: rgba(255, 255, 255, 0.08);
-  padding: 12px;
+  padding: 20px;
   border-radius: 8px;
   transition: background 0.3s ease;
 }
@@ -161,7 +162,7 @@ body {
 
 /* Team Names */
 .team-details strong {
-  font-size: 16px;
+  font-size: 28px;
   font-weight: 700;
   color: #d4edda;
   display: block;
@@ -185,14 +186,15 @@ body {
   line-height: 24px;
 }
 .team-info span {
-  font-size: 18px;
+  font-size: 20px;
   color: #e0f7fa;
   font-weight: 500;
   display: block;
 }
 
 .team-stats-font {
-  font-size: 18px;
+  margin: 5px 0;
+  font-size: 28px;
 }
 
 .team-info strong {
@@ -233,8 +235,8 @@ body {
 }
 
 .player-info img {
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.1);
@@ -288,6 +290,10 @@ body {
   text-align: center;
 }
 
+.base-price {
+  margin-top: 10px;
+}
+
 .stat-item {
   background: rgba(255, 255, 255, 0.1);
   padding: 15px;
@@ -308,8 +314,13 @@ body {
 
 .stat-item p {
   margin: 0;
-  font-size: 16px;
+  font-size: 25px;
   color: #d4edda;
+}
+
+.stat-item .some-stat{
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .stat-item p:first-child {

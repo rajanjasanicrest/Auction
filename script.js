@@ -1,6 +1,6 @@
 const employeeId = "101";
 const basePrice = "10";
-const isIcon = true;
+const isIcon = false;
 
 // TEAMS DATA
 const COLUMNS_PER_TEAM = 3;
@@ -56,7 +56,7 @@ function displayPlayer(player) {
   document.getElementById("player-role").textContent = player.role;
   document.getElementById("base-price").textContent = isIcon
     ? ICON_BASE_AMOUNT
-    : `${basePrice + " Lakhs"}`;
+    : `${basePrice + " L"}`;
   document.getElementById("batting-rank").textContent = player.battingRank;
   document.getElementById("bowling-rank").textContent = player.bowlingRank;
   document.getElementById("innings-batting").textContent =
@@ -154,8 +154,8 @@ async function loadTeamsData() {
     document.getElementById("base-price").textContent = isIcon
       ? ICON_BASE_AMOUNT >= 10000000
         ? `${(ICON_BASE_AMOUNT / 10000000).toFixed(2)} Cr`
-        : `${Math.floor(ICON_BASE_AMOUNT / 100000)} Lakhs`
-      : `${basePrice + " Lakhs"}`;
+        : `${Math.floor(ICON_BASE_AMOUNT / 100000)} L`
+      : `${basePrice + " L"}`;
 
     return teams;
   } catch (error) {
@@ -235,7 +235,7 @@ function renderTeamsData(teamsData) {
                               ).toFixed(2)} Cr`
                             : `${Math.floor(
                                 maxSpendingLimitForCurrentPlayer / 100000
-                              )} Lakhs`
+                              )} L`
                         }</b>
                       </div>                
                     </div>
