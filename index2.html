@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Slots Generator</title>
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(
+          -45deg,
+          #0a0a0a,
+          #1a1a2e,
+          #16213e,
+          #1f1f3a,
+          #0d1b2a
+        );
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: #d4edda;
+        min-height: 100vh;
+        padding: 10px;
+        perspective: 1000px;
+        overflow: hidden; /* Prevent scrolling */
+        display: flex;
+        flex-direction: column;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        height: 70%;
+        padding: 10px 20px;
+      }
+      .group {
+        flex: 1;
+        background: rgba(13, 17, 23, 0.8);
+        backdrop-filter: blur(15px);
+        padding: 0 10px 10px 10px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
+          inset 0 0 15px rgba(255, 255, 255, 0.05),
+          0 0 20px rgba(13, 114, 215, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      .slots-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(12, 45px);
+        gap: 5px;
+        height: calc(100% - 30px);
+      }
+      .slot {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+        height: 45px;
+      }
+      .slot:hover {
+        transform: translateZ(20px);
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .match-number {
+        font-weight: bold;
+        width: 10%;
+        color: #1db954;
+        text-align: center;
+      }
+      .match-info {
+        flex: 1;
+        color: #d4edda;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+      }
+      .team-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 30%;
+      }
+      .team-image {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .vs-text {
+        color: #888;
+        width: 10%;
+        text-align: center;
+        font-size: 0.9em;
+      }
+      .team-info-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .captain-name {
+        color: #888;
+        font-size: 0.8em;
+      }
+      h3 {
+        text-align: center;
+        margin-bottom: 5px;
+        color: #1db954;
+        font-size: 18px;
+        padding: 5px;
+      }
+      button {
+        background: #1db954;
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        bottom: -10%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+      }
+      button:hover {
+        background: #17a74e;
+        /* transform: translateY(-3px); */
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+      }
+      h2 {
+        font-size: 24px;
+        margin: 10px 0;
+        padding: 8px 15px;
+      }
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #002b5c,
+            0 0 20px #002b5c;
+        }
+        to {
+          box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #002b5c,
+            0 0 40px #002b5c;
+        }
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 5px; /* Reduced from 15px */
+      }
+      .header h1 {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px 30px;
+        border-radius: 50px;
+        box-shadow: 0 6px 20px rgba(0, 0, 255, 0.2);
+        animation: glow 2s ease-in-out infinite alternate;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform: translateZ(40px);
+        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        display: inline-block;
+      }
+      .header h1:hover {
+        transform: translateZ(60px) scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading-screen">
+      <h1 class="animated-title">
+        <span style="--i: 1">🏆</span>
+        <span style="--i: 2">C</span>
+        <span style="--i: 3">R</span>
+        <span style="--i: 4">E</span>
+        <span style="--i: 5">S</span>
+        <span style="--i: 6">T</span>
+        <span style="--i: 7"> </span>
+        <span style="--i: 8">B</span>
+        <span style="--i: 9">o</span>
+        <span style="--i: 10">x</span>
+        <span style="--i: 11"> </span>
+        <span style="--i: 12">T</span>
+        <span style="--i: 13">o</span>
+        <span style="--i: 14">u</span>
+        <span style="--i: 15">r</span>
+        <span style="--i: 16">n</span>
+        <span style="--i: 17">a</span>
+        <span style="--i: 18">m</span>
+        <span style="--i: 19">e</span>
+        <span style="--i: 20">n</span>
+        <span style="--i: 21">t</span>
+        <span style="--i: 22"> </span>
+        <span style="--i: 23">5</span>
+        <span style="--i: 24">.</span>
+        <span style="--i: 25">0</span>
+        <span style="--i: 26"> </span>
+        <span style="--i: 27">🏆</span>
+      </h1>
+    </div>
+    <div class="main-content">
+      <header class="header">
+        <h1>🏆 CREST Box Tournament 5.0 🏆</h1>
+      </header>
+      <div class="container">
+        <div class="group">
+          <h3>Group A</h3>
+          <div id="slotsContainerA" class="slots-grid"></div>
+        </div>
+        <div class="group">
+          <h3>Group B</h3>
+          <div id="slotsContainerB" class="slots-grid"></div>
+        </div>
+      </div>
+      <button onclick="generateSlots()">Generate Slots</button>
+    </div>
+
+    <script>
+      const allTeams = [
+        {
+          name: "Team 1",
+          captain: "John Smith",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 2",
+          captain: "Sarah Johnson",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 3",
+          captain: "Mike Brown",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 4",
+          captain: "Emily Davis",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 5",
+          captain: "James Wilson",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 6",
+          captain: "Lisa Anderson",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 7",
+          captain: "David Miller",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 8",
+          captain: "Emma White",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 9",
+          captain: "Chris Taylor",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 10",
+          captain: "Rachel Green",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 11",
+          captain: "Daniel Lee",
+          image: "https://picsum.photos/200/300",
+        },
+        {
+          name: "Team 12",
+          captain: "Sophie Martin",
+          image: "https://picsum.photos/200/300",
+        },
+      ];
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function generateMatches(group) {
+        let matches = [];
+        let teamMatchCount = {}; // Track number of matches per team
+
+        // Initialize match count for each team
+        group.forEach((team) => (teamMatchCount[team.name] = 0));
+
+        // Generate all possible matches
+        for (let i = 0; i < group.length; i++) {
+          for (let j = i + 1; j < group.length; j++) {
+            const team1 = group[i];
+            const team2 = group[j];
+            matches.push({
+              match: `${team1.name} vs ${team2.name}`,
+              teams: [team1, team2],
+              used: false,
+            });
+          }
+        }
+
+        // Shuffle matches while maintaining constraints
+        let shuffledMatches = [];
+        let previousTeams = new Set();
+        let attempts = 0;
+        const maxAttempts = 1000; // Prevent infinite loop
+
+        while (shuffledMatches.length < 12 && attempts < maxAttempts) {
+          attempts++;
+
+          // Filter valid matches
+          let validMatches = matches.filter((match) => {
+            // Check if match is unused and teams haven't played consecutive matches
+            if (match.used) return false;
+            if (match.teams.some((team) => previousTeams.has(team.name)))
+              return false;
+
+            // Check if either team has already played 4 matches
+            if (match.teams.some((team) => teamMatchCount[team.name] >= 4))
+              return false;
+
+            return true;
+          });
+
+          if (validMatches.length === 0) {
+            // Reset and try again if we hit a dead end
+            shuffledMatches = [];
+            previousTeams.clear();
+            matches.forEach((match) => (match.used = false));
+            Object.keys(teamMatchCount).forEach(
+              (team) => (teamMatchCount[team] = 0)
+            );
+            continue;
+          }
+
+          const randomIndex = Math.floor(Math.random() * validMatches.length);
+          const selectedMatch = validMatches[randomIndex];
+
+          // Update match counts and mark match as used
+          selectedMatch.teams.forEach((team) => teamMatchCount[team.name]++);
+          selectedMatch.used = true;
+
+          shuffledMatches.push(selectedMatch);
+
+          // Update previous teams
+          previousTeams.clear();
+          selectedMatch.teams.forEach((team) => previousTeams.add(team.name));
+        }
+
+        if (attempts >= maxAttempts) {
+          console.error("Could not generate valid match schedule");
+          return [];
+        }
+
+        return shuffledMatches;
+      }
+
+      function generateSlots() {
+        const slotsContainerA = document.getElementById("slotsContainerA");
+        const slotsContainerB = document.getElementById("slotsContainerB");
+        slotsContainerA.innerHTML = "";
+        slotsContainerB.innerHTML = "";
+
+        // Shuffle all teams and split into two groups
+        const shuffledTeams = shuffleArray([...allTeams]);
+        const groupA = shuffledTeams.slice(0, 6);
+        const groupB = shuffledTeams.slice(6);
+
+        const groupMatches = {
+          "Group A": generateMatches(groupA),
+          "Group B": generateMatches(groupB),
+        };
+
+        Object.entries(groupMatches).forEach(([group, matches]) => {
+          const container =
+            group === "Group A" ? slotsContainerA : slotsContainerB;
+
+          matches.forEach((match, index) => {
+            const div = document.createElement("div");
+            div.className = "slot";
+
+            const matchNumber = document.createElement("div");
+            matchNumber.className = "match-number";
+            matchNumber.innerText = `M${index + 1}`; // Shortened to save space
+
+            const matchInfo = document.createElement("div");
+            matchInfo.className = "match-info";
+
+            // Create team 1 info
+            const team1Info = document.createElement("div");
+            team1Info.className = "team-info";
+            team1Info.innerHTML = `
+              <img src="${match.teams[0].image}" class="team-image" alt="${match.teams[0].name}">
+              <div class="team-info-text">
+                ${match.teams[0].name} 
+                <span class="captain-name">(${match.teams[0].captain})</span>
+              </div>
+            `;
+
+            // Create VS text
+            const vsText = document.createElement("div");
+            vsText.className = "vs-text";
+            vsText.innerText = "vs";
+
+            // Create team 2 info
+            const team2Info = document.createElement("div");
+            team2Info.className = "team-info";
+            team2Info.innerHTML = `
+              <img src="${match.teams[1].image}" class="team-image" alt="${match.teams[1].name}">
+              <div class="team-info-text">
+                ${match.teams[1].name} 
+                <span class="captain-name">(${match.teams[1].captain})</span>
+              </div>
+            `;
+
+            div.appendChild(matchNumber);
+            matchInfo.appendChild(team1Info);
+            matchInfo.appendChild(vsText);
+            matchInfo.appendChild(team2Info);
+            div.appendChild(matchInfo);
+
+            container.appendChild(div);
+          });
+        });
+      }
+
+      // Generate slots when page loads
+      window.onload = generateSlots;
+    </script>
+
+    <style>
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          -45deg,
+          #0a0a0a,
+          #1a1a2e,
+          #16213e,
+          #1f1f3a,
+          #0d1b2a
+        );
+        background-size: 400% 400%;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: gradientBG 15s ease infinite, fadeOut 1s ease 3s forwards;
+      }
+
+      .animated-title {
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #d4edda;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px 30px;
+        border-radius: 50px;
+        box-shadow: 0 0 30px rgba(0, 0, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: titlePath 3s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+          glowPulse 2s ease-in-out infinite;
+        width: 90vw;
+        max-width: 1200px;
+      }
+
+      .animated-title span {
+        display: inline-block;
+        opacity: 0;
+        animation: letterAppear 0.5s ease forwards;
+        animation-delay: calc(0.05s * var(--i));
+      }
+
+      .main-content {
+        opacity: 0;
+        animation: contentAppear 1.5s ease-in-out 2s forwards;
+      }
+
+      @keyframes titlePath {
+        0% {
+          transform: translate(-100vw, 100vh) scale(0.5) rotate(-10deg);
+          opacity: 0;
+        }
+        20% {
+          transform: translate(0, 0) scale(1.5) rotate(0deg);
+          opacity: 1;
+        }
+        40%,
+        60%,
+        80% {
+          transform: translate(0, 0) scale(1.5) rotate(0deg);
+        }
+        100% {
+          transform: translate(0, -150px) scale(1) rotate(0deg);
+          opacity: 1;
+        }
+      }
+
+      @keyframes letterAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) rotate(45deg);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      @keyframes glowPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 30px rgba(0, 0, 255, 0.3),
+            0 0 60px rgba(0, 0, 255, 0.1);
+        }
+        50% {
+          box-shadow: 0 0 50px rgba(0, 0, 255, 0.5),
+            0 0 100px rgba(0, 0, 255, 0.2);
+        }
+      }
+
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      @keyframes contentAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+    </style>
+  </body>
+</html>

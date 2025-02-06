@@ -1,5 +1,5 @@
-const employeeId = "102";
-const basePrice = "5";
+const employeeId = "101";
+const basePrice = "10";
 const isIcon = true;
 
 // TEAMS DATA
@@ -213,10 +213,10 @@ function renderTeamsData(teamsData) {
                       </div>
                       <div class='team-stats-font'>
                         <b>${
-                            pendingBalance >= 10000000
-                              ? `${(pendingBalance / 10000000).toFixed(2)} Cr`
-                              : `${Math.floor(pendingBalance / 100000)} L`
-                          }</b>
+                          pendingBalance >= 10000000
+                            ? `${(pendingBalance / 10000000).toFixed(2)} Cr`
+                            : `${Math.floor(pendingBalance / 100000)} L`
+                        }</b>
                       </div>                      
                     </div>
                       
