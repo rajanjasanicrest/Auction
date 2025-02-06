@@ -371,16 +371,12 @@ body {
 /* Add these new animations */
 @keyframes glow {
   from {
-    box-shadow: 0 0 5px #fff, 
-               0 0 10px #fff, 
-               0 0 15px #002b5c,  /* Dark midnight blue */
-               0 0 20px #002b5c;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #002b5c,
+      /* Dark midnight blue */ 0 0 20px #002b5c;
   }
   to {
-    box-shadow: 0 0 10px #fff, 
-               0 0 20px #fff, 
-               0 0 30px #002b5c,  /* Maintains deep navy */
-               0 0 40px #002b5c;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #002b5c,
+      /* Maintains deep navy */ 0 0 40px #002b5c;
   }
 }
 
@@ -458,7 +454,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: gradientBG 15s ease infinite, fadeOut 1s ease 4s forwards;
+  animation: gradientBG 15s ease infinite, fadeOut 1s ease 3s forwards;
 }
 
 .animated-title {
@@ -473,7 +469,7 @@ body {
   border-radius: 50px;
   box-shadow: 0 0 30px rgba(0, 0, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  animation: titlePath 4s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+  animation: titlePath 3s cubic-bezier(0.4, 0, 0.2, 1) forwards,
     glowPulse 2s ease-in-out infinite;
   width: 90vw;
   max-width: 1200px;
@@ -488,7 +484,7 @@ body {
 
 .main-content {
   opacity: 0;
-  animation: contentAppear 1.5s ease-in-out 3.8s forwards;
+  animation: contentAppear 1.5s ease-in-out 2s forwards;
 }
 
 @keyframes titlePath {
@@ -504,13 +500,13 @@ body {
     transform: translate(0, 0) scale(1.5) rotate(0deg);
   }
   60% {
-    transform: translate(0, 0) scale(1.5) rotate(360deg);
+    transform: translate(0, 0) scale(1.5) rotate(0deg);
   }
   80% {
-    transform: translate(0, -50px) scale(1.5) rotate(360deg);
+    transform: translate(0, 0) scale(1.5) rotate(0deg);
   }
   100% {
-    transform: translate(0, -150px) scale(1) rotate(360deg);
+    transform: translate(0, -150px) scale(1) rotate(0deg);
     opacity: 1;
   }
 }
