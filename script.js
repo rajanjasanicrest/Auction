@@ -1,4 +1,4 @@
-const employeeId = "101";
+const employeeId = "217";
 const basePrice = "10";
 const isIcon = false;
 
@@ -41,6 +41,9 @@ async function loadPlayersData() {
         strikeRate: player["Strike Rate"],
         runs: player["Runs"],
         wickets: player["Wickets"],
+        Economy: player["Economy"],
+        basePrice: player["Base Price"],
+        isIcon: player["Base Price"] == 5 ? true : false,
       };
     });
     return playersData;
@@ -56,7 +59,7 @@ function displayPlayer(player) {
   document.getElementById("player-role").textContent = player.role;
   document.getElementById("base-price").textContent = isIcon
     ? ICON_BASE_AMOUNT
-    : `${basePrice + " L"}`;
+    : `${player["basePrice"] + " L"}`;
   document.getElementById("batting-rank").textContent = player.battingRank;
   document.getElementById("bowling-rank").textContent = player.bowlingRank;
   document.getElementById("innings-batting").textContent =
@@ -66,6 +69,8 @@ function displayPlayer(player) {
   document.getElementById("strike-rate").textContent = player.strikeRate;
   document.getElementById("runs").textContent = player.runs;
   document.getElementById("wickets").textContent = player.wickets;
+  document.getElementById("economy").textContent = player.Economy;
+  document.getElementById("player-image").setAttribute("src", player.image);
 }
 
 let players = {};
@@ -151,11 +156,12 @@ async function loadTeamsData() {
       });
     }
 
-    document.getElementById("base-price").textContent = isIcon
-      ? ICON_BASE_AMOUNT >= 10000000
-        ? `${(ICON_BASE_AMOUNT / 10000000).toFixed(2)} Cr`
-        : `${Math.floor(ICON_BASE_AMOUNT / 100000)} L`
-      : `${basePrice + " L"}`;
+    if (isIcon) {
+      document.getElementById("base-price").textContent =
+        ICON_BASE_AMOUNT >= 10000000
+          ? `${(ICON_BASE_AMOUNT / 10000000).toFixed(2)} Cr`
+          : `${Math.floor(ICON_BASE_AMOUNT / 100000)} L`;
+    }
 
     return teams;
   } catch (error) {
