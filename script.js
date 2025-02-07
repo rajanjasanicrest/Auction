@@ -1,4 +1,4 @@
-const employeeId = "222";
+const employeeId = "169";
 const basePrice = "10";
 const isIcon = false;
 
@@ -8,7 +8,7 @@ const TEAM_BALANCE = 20000000;
 const BASE_AMOUNT = 500000;
 let ICON_BASE_AMOUNT = 3000000;
 const ICON_BID_AMOUNT = 200000;
-const TOTAL_TEAM_PLAYERS = 10;
+const TOTAL_TEAM_PLAYERS = 9;
 const TOTAL_ICON_PLAYERS = 12;
 let remainingIconPlayers = 12;
 

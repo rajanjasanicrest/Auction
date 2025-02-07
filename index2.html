@@ -54,19 +54,29 @@
         overflow: hidden; /* Prevent internal scrolling */
       }
       .group:hover {
-        position: absolute; /* Position over other content */
-        left: 40px; /* Match container padding */
-        right: 40px; /* Match container padding */
-        padding: 0 18px 18px 18px;
-        width: calc(100% - 120px); /* Account for padding and margins */
-        z-index: 10;
+        position: fixed; /* Changed from absolute to fixed */
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 20px;
+        width: 100%; /* Full width */
+        height: 100vh; /* Full height */
+        margin: 0;
+        z-index: 100;
+        background: rgba(
+          13,
+          17,
+          23,
+          0.95
+        ); /* Slightly darker background for better focus */
       }
       .group:not(:hover) {
         z-index: 1;
       }
       .container:has(.group:hover) .group:not(:hover) {
-        flex: 0;
         opacity: 0;
+        pointer-events: none; /* Prevent interaction with hidden groups */
         transform: scale(0.95);
       }
       .slots-grid {
@@ -222,9 +232,9 @@
       }
       .group:hover .slot {
         padding: 13px 18px;
-        font-size: 1.15em; /* Slightly reduced */
+        font-size: 1.15em;
         height: auto;
-        min-height: 70px; /* Reduced for better fit */
+        min-height: 85px;
         margin-bottom: 6px;
       }
       .group:hover .team-image {
@@ -238,14 +248,17 @@
         gap: 18px;
       }
       .group:hover .team-info-text {
-        font-size: 1.1em; /* Slightly reduced */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 1.2em;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
       .group:hover .captain-name {
-        font-size: 0.9em; /* Slightly reduced */
+        font-size: 0.9em;
         margin-top: 2px;
+        display: block;
+        white-space: normal;
       }
       .group:hover .vs-text {
         font-size: 1.1em;
