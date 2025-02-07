@@ -1,6 +1,18 @@
-const employeeId = "169";
-const basePrice = "10";
-const isIcon = false;
+const employeeId = "319"; //239
+const basePrice = "5";
+const isIcon = [
+  "358",
+  "90",
+  "323",
+  "257",
+  "194",
+  "216",
+  "4",
+  "426",
+  "156",
+  "202",
+  "319",
+].includes(employeeId);
 
 // TEAMS DATA
 const COLUMNS_PER_TEAM = 3;
