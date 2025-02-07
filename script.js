@@ -1,6 +1,6 @@
-const employeeId = "102";
+const employeeId = "CS035";
 const basePrice = "5";
-const isIcon = true;
+const isIcon = false;
 
 // TEAMS DATA
 const COLUMNS_PER_TEAM = 3;
@@ -11,7 +11,7 @@ const ICON_BID_AMOUNT = 200000;
 const TOTAL_TEAM_PLAYERS = 9;
 const TOTAL_ICON_PLAYERS = 12;
 let remainingIconPlayers = 12;
-
+// basePrice = 5
 // Protected Code (Not to touch while auction is ON)
 async function loadPlayersData() {
   try {
@@ -41,8 +41,12 @@ async function loadPlayersData() {
         strikeRate: player["Strike Rate"],
         runs: player["Runs"],
         wickets: player["Wickets"],
+        Economy: player["Economy"],
+        basePrice: player["Base Price"],
+        isIcon: player["Base Price"] == 5 ? true : false
       };
     });
+    console.log(playersData)
     return playersData;
   } catch (error) {
     console.error("Error loading players data:", error);
@@ -54,9 +58,7 @@ function displayPlayer(player) {
   // document.getElementById("player-id").textContent = player.employeeId;
   document.getElementById("player-name").textContent = player.name;
   document.getElementById("player-role").textContent = player.role;
-  document.getElementById("base-price").textContent = isIcon
-    ? ICON_BASE_AMOUNT
-    : `${basePrice + " Lakhs"}`;
+  document.getElementById("base-price").textContent = `${player['basePrice'] + " Lakhs"}`;
   document.getElementById("batting-rank").textContent = player.battingRank;
   document.getElementById("bowling-rank").textContent = player.bowlingRank;
   document.getElementById("innings-batting").textContent =
@@ -66,6 +68,8 @@ function displayPlayer(player) {
   document.getElementById("strike-rate").textContent = player.strikeRate;
   document.getElementById("runs").textContent = player.runs;
   document.getElementById("wickets").textContent = player.wickets;
+  document.getElementById("economy").textContent = player.Economy;
+  document.getElementById("player-image").setAttribute("src", player.image);
 }
 
 let players = {};
@@ -151,11 +155,11 @@ async function loadTeamsData() {
       });
     }
 
-    document.getElementById("base-price").textContent = isIcon
-      ? ICON_BASE_AMOUNT >= 10000000
-        ? `${(ICON_BASE_AMOUNT / 10000000).toFixed(2)} Cr`
-        : `${Math.floor(ICON_BASE_AMOUNT / 100000)} Lakhs`
-      : `${basePrice + " Lakhs"}`;
+      // document.getElementById("base-price").textContent = isIcon
+      //   ? ICON_BASE_AMOUNT >= 10000000
+      //     ? `${(ICON_BASE_AMOUNT / 10000000).toFixed(2)} Cr`
+      //     : `${Math.floor(ICON_BASE_AMOUNT / 100000)} Lakhs`
+      //   : `${basePrice + " Lakhs"}`;
 
     return teams;
   } catch (error) {
