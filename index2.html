@@ -30,7 +30,11 @@
         justify-content: space-between;
         gap: 20px;
         height: 70%;
-        padding: 10px 20px;
+        padding: 10px 40px; /* Increased side padding */
+        transition: all 0.5s ease;
+        max-height: calc(100vh - 150px);
+        width: calc(100% - 80px); /* Account for container padding */
+        margin: 0 auto; /* Center the container */
       }
       .group {
         flex: 1;
@@ -43,6 +47,27 @@
           0 0 20px rgba(13, 114, 215, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.1);
         animation: glow 2s ease-in-out infinite alternate;
+        transition: all 0.5s ease;
+        position: relative; /* For absolute positioning when hovered */
+        z-index: 1;
+        max-height: 100%;
+        overflow: hidden; /* Prevent internal scrolling */
+      }
+      .group:hover {
+        position: absolute; /* Position over other content */
+        left: 40px; /* Match container padding */
+        right: 40px; /* Match container padding */
+        padding: 0 18px 18px 18px;
+        width: calc(100% - 120px); /* Account for padding and margins */
+        z-index: 10;
+      }
+      .group:not(:hover) {
+        z-index: 1;
+      }
+      .container:has(.group:hover) .group:not(:hover) {
+        flex: 0;
+        opacity: 0;
+        transform: scale(0.95);
       }
       .slots-grid {
         display: grid;
@@ -50,17 +75,18 @@
         grid-template-rows: repeat(12, 45px);
         gap: 5px;
         height: calc(100% - 30px);
+        transition: all 0.5s ease;
       }
       .slot {
         background: rgba(255, 255, 255, 0.1);
         padding: 8px;
         border-radius: 8px;
-        font-size: 0.9em;
+        font-size: 0.92em;
         display: flex;
         align-items: center;
         gap: 5px;
         transition: all 0.3s ease;
-        height: 45px;
+        height: 47px;
       }
       .slot:hover {
         transform: translateZ(20px);
@@ -87,8 +113,8 @@
         width: 30%;
       }
       .team-image {
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         object-fit: cover;
         flex-shrink: 0;
@@ -106,7 +132,7 @@
       }
       .captain-name {
         color: #888;
-        font-size: 0.8em;
+        font-size: 0.82em;
       }
       h3 {
         text-align: center;
@@ -185,6 +211,45 @@
       .header h1:hover {
         transform: translateZ(60px) scale(1.05);
       }
+      .group:hover .slots-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 13px 23px;
+        padding: 18px;
+        height: calc(100% - 58px);
+        max-height: 100%;
+        margin: 0 auto; /* Center the grid */
+      }
+      .group:hover .slot {
+        padding: 13px 18px;
+        font-size: 1.15em; /* Slightly reduced */
+        height: auto;
+        min-height: 70px; /* Reduced for better fit */
+        margin-bottom: 6px;
+      }
+      .group:hover .team-image {
+        width: 48px; /* Slightly reduced */
+        height: 48px;
+      }
+      .group:hover .match-number {
+        font-size: 1.2em;
+      }
+      .group:hover .team-info {
+        gap: 18px;
+      }
+      .group:hover .team-info-text {
+        font-size: 1.1em; /* Slightly reduced */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .group:hover .captain-name {
+        font-size: 0.9em; /* Slightly reduced */
+        margin-top: 2px;
+      }
+      .group:hover .vs-text {
+        font-size: 1.1em;
+      }
     </style>
   </head>
   <body>
@@ -239,67 +304,66 @@
     <script>
       const allTeams = [
         {
-          name: "Team 1",
-          captain: "John Smith",
-          image: "https://picsum.photos/200/300",
+          name: "Blue Strikers",
+          captain: "Jainesh Bhatt",
+          image: "./data/team_images/Blue Strikers.png",
         },
         {
-          name: "Team 2",
-          captain: "Sarah Johnson",
-          image: "https://picsum.photos/200/300",
+          name: "Victory Warriors",
+          captain: "Darshan Patel",
+          image: "./data/team_images/Victory Warriors.png",
         },
         {
-          name: "Team 3",
-          captain: "Mike Brown",
-          image: "https://picsum.photos/200/300",
+          name: "Rising Crestiors",
+          captain: "Mahipal Rajpurohit",
+          image: "./data/team_images/Rising Crestiors.png",
         },
         {
-          name: "Team 4",
-          captain: "Emily Davis",
-          image: "https://picsum.photos/200/300",
+          name: "Boundary Blaster",
+          captain: "Nikunj Ladva",
+          image: "./data/team_images/Boundary Blaster.png",
         },
         {
-          name: "Team 5",
-          captain: "James Wilson",
-          image: "https://picsum.photos/200/300",
+          name: "Power Hitters",
+          captain: "Shani Shah",
+          image: "./data/team_images/Power Hitters.png",
         },
         {
-          name: "Team 6",
-          captain: "Lisa Anderson",
-          image: "https://picsum.photos/200/300",
+          name: "Thala Super Kings",
+          captain: "Naitik Parmar",
+          image: "./data/team_images/Thala Super Kings.png",
         },
         {
-          name: "Team 7",
-          captain: "David Miller",
-          image: "https://picsum.photos/200/300",
+          name: "Skyline Smashers",
+          captain: "Nikhil Patel",
+          image: "./data/team_images/Skyline Smashers.png",
         },
         {
-          name: "Team 8",
-          captain: "Emma White",
-          image: "https://picsum.photos/200/300",
+          name: "The Game Changers",
+          captain: "Parth Chauhan",
+          image: "./data/team_images/The Game Changers.png",
         },
         {
-          name: "Team 9",
-          captain: "Chris Taylor",
-          image: "https://picsum.photos/200/300",
+          name: "Turf Titans",
+          captain: "Shivaraj Patil",
+          image: "./data/team_images/Turf Titans.png",
         },
         {
-          name: "Team 10",
-          captain: "Rachel Green",
-          image: "https://picsum.photos/200/300",
+          name: "Crest Paltan",
+          captain: "Ishwar Khairnar",
+          image: "./data/team_images/Crest Paltan.png",
         },
         {
-          name: "Team 11",
-          captain: "Daniel Lee",
-          image: "https://picsum.photos/200/300",
+          name: "Strike Force",
+          captain: "Ashish Maharana",
+          image: "./data/team_images/Strike Force.png",
         },
         {
-          name: "Team 12",
-          captain: "Sophie Martin",
-          image: "https://picsum.photos/200/300",
+          name: "The Dominators",
+          captain: "Asif Ahmed",
+          image: "./data/team_images/The Dominators.png",
         },
       ];
-
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));

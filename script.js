@@ -70,7 +70,9 @@ function displayPlayer(player) {
   document.getElementById("runs").textContent = player.runs;
   document.getElementById("wickets").textContent = player.wickets;
   document.getElementById("economy").textContent = player.Economy;
-  document.getElementById("player-image").setAttribute("src", player.image);
+  document
+    .getElementById("player-image")
+    .setAttribute("src", `./data/${player.image}`);
 }
 
 let players = {};
